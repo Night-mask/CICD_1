@@ -1,0 +1,7 @@
+yolo predict model=yolov8n.pt imgsz=640 conf=0.25
+conda info --envs
+pip list
+conda create -n yolov8 pip python=3.11.4
+conda activate yolov8
+sudo apt install anything
+
