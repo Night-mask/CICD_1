@@ -1,0 +1,8 @@
+yolo predict model=yolov8n_openvino_model source=/var/lib/elangovan/ultralytics/ultralytics/assets/bus.jpg
+
+yolo detect predict model=yolov8n.pt source=/var/lib/elangovan/ultralytics/ultralytics/assets/bus.jpg
+
+
+yolo predict model=yolov8n_openvino_model source=/var/lib/elangovan/videos/alpr_2_1.mp4
+
+yolo detect predict model=yolov8n.pt source=/var/lib/elangovan/videos/alpr_2_1.mp4
