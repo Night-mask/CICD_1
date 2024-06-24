@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = 'https://github.com/Night-mask/CICD_1.git'
+        BRANCH_NAME = 'temp-branch'
+        DOCKER_IMAGE = 'my-python-app:latest'
+    }
+
+    stages {
+        stage('GIT Checkout') {
+            steps {
+                git branch: "${BRANCH_NAME}", url: "${REPO_URL}"
+            }
+        }
+
+        stage('Verify Files') {
+            steps {
+                script {
+                    // Print current working directory and list files to verify presence of calculator.py and Dockerfile
+                    sh 'echo "Current directory: $(pwd)"'
+                    sh 'ls -la'
+                    sh 'ls -la CICD_1'
+                }
+            }
+        }
+
+        stage('Check Python') {
+            steps {
+                script {
+                    // Verify Python installation and version
+                    sh 'python3 --version'
+                }
+            }
+        }
+
+        stage('Run Python Code') {
+            steps {
+                script {
+                    // Run the Python script with arguments
+                    sh 'python3 CICD_1/calculator.py 10 5 add'
+                }
+            }
+        }
+
+        stage('Check Docker') {
+            steps {
+                script {
+                    // Verify Docker installation and version
+                    sh 'docker --version'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Navigate to the directory containing Dockerfile and build the Docker image
+                    sh 'cd CICD_1 && docker build -t ${DOCKER_IMAGE} .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Run the Docker container and pass arguments to the script
+                    sh 'docker run --rm ${DOCKER_IMAGE} python3 calculator.py 10 5 add'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
