@@ -13,4 +13,8 @@ GIT
 ![Screenshot from 2024-06-24 10-10-24](https://github.com/Night-mask/CICD_1/assets/146056953/4d5cd508-486a-4c95-952e-6459abab817a)
 
 
+![Screenshot from 2024-06-24 10-11-54](https://github.com/Night-mask/CICD_1/assets/146056953/515e06a7-d62b-4f7b-85d8-59b0668b60c7)
+
+
+
 
